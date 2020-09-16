@@ -31,8 +31,8 @@ public class BoardService {
 		return dao.selectBoardByNum(num);
 	}
 
-	public void modifyReadCount(String num) {
-		dao.updateReadCount(num);
+	public int modifyReadCount(String num) {
+		return dao.updateReadCount(num);
 	}
 	
 	public Board confirmPassword(String pass, String num) {

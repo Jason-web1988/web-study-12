@@ -10,7 +10,7 @@ public interface BoardDao {
 
 	int insertBoard(Board board);
 	
-	void updateReadCount(String num);
+	int updateReadCount(String num);
 	
 	Board selectBoardByNum(String num);
 	

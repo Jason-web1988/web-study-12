@@ -18,7 +18,9 @@ public class BoardGetModel implements Command {
 			throws ServletException, IOException {
 		String num = request.getParameter("num");
 		System.out.println("num > " + num);
+		service.modifyReadCount(num);
 		Board board = service.getBoard(num);
+		
 		request.setAttribute("board", board);
 		return "board/boardView.jsp";
 	}

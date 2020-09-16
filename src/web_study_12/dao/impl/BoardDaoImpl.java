@@ -56,14 +56,14 @@ public class BoardDaoImpl implements BoardDao {
 
 	private Board getBoard(ResultSet rs) throws SQLException {
 		int num = rs.getInt("NUM");
-		String pass = rs.getString("PASS");
 		String name = rs.getString("NAME");
 		String email = rs.getString("EMAIL");
+		String pass = rs.getString("PASS");
 		String title = rs.getString("TITLE");
 		String content = rs.getString("CONTENT");
 		int readCount = rs.getInt("READCOUNT");
 		Date writeDate = rs.getTimestamp("WRITEDATE");
-		return new Board(num, pass, name, email, title, content, readCount, writeDate);
+		return new Board(num, name, email, pass, title, content, readCount, writeDate);
 	}
 
 
@@ -84,10 +84,11 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public void updateReadCount(String num) {
+	public int updateReadCount(String num) {
 		String sql = "UPDATE BOARD SET READCOUNT = READCOUNT + 1 WHERE NUM = ?";
 		try(PreparedStatement pstmt = con.prepareStatement(sql);){
-			pstmt.setString(1, num);
+			pstmt.setInt(1, Integer.parseInt(num));
+			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new CustomSQLException(e);
 		}

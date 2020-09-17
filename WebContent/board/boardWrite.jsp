@@ -10,6 +10,9 @@
 <script>
 $(function(){
 	$('#add').on("click",function(){
+		if($('#name') == null && $('#pass') == null && $('#title') == null ){
+			alert("필수항목을 확인해 주세요!");
+		}else{
 		var newBoard={
 				name:$('#name').val(),
 				pass:$('#pass').val(),
@@ -27,6 +30,7 @@ $(function(){
 				window.location.href="boardList.do"
 			}
 		});
+		}
 	});
 	
 	$('#reset').on("click", function(){
